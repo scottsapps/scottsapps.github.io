@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scott's Apps</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --accent: #0a84ff;
+      --text: #f0f0f0;
+      --muted: #888;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+    nav .brand { font-size: 1.1rem; font-weight: 600; color: var(--text); }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul li a { color: var(--muted); font-size: 0.95rem; }
+    nav ul li a:hover { color: var(--text); text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .hero h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 1rem; }
+    .hero p { color: var(--muted); font-size: 1.1rem; }
+
+    /* APPS GRID */
+    .section { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+    .section h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 1.2rem;
+    }
+    .app-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.2s;
+    }
+    .app-card:hover { border-color: #444; }
+    .app-card-header { display: flex; align-items: center; gap: 1rem; }
+    .app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .app-meta h3 { font-size: 1.05rem; font-weight: 600; }
+    .app-meta .platform {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+    .app-desc { color: #bbb; font-size: 0.92rem; }
+    .app-footer { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem; flex-wrap: wrap; }
+    .badge-free {
+      font-size: 0.75rem;
+      background: #1e3a1e;
+      color: #4caf50;
+      border: 1px solid #2e5a2e;
+      border-radius: 20px;
+      padding: 0.2rem 0.65rem;
+      font-weight: 600;
+    }
+    .badge-paid {
+      font-size: 0.75rem;
+      background: #1a2a3a;
+      color: #64b5f6;
+      border: 1px solid #1e3a5a;
+      border-radius: 20px;
+      padding: 0.2rem 0.65rem;
+      font-weight: 600;
+    }
+    .badge-pending {
+      font-size: 0.75rem;
+      background: #2a2a1a;
+      color: #ffc107;
+      border: 1px solid #4a4a1a;
+      border-radius: 20px;
+      padding: 0.2rem 0.65rem;
+      font-weight: 600;
+    }
+    .app-store-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      transition: background 0.2s;
+    }
+    .app-store-btn:hover { background: #0070d8; text-decoration: none; }
+
+    /* PRIVACY NOTE */
+    .privacy-note {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .privacy-note .note-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      font-size: 0.95rem;
+      color: #bbb;
+    }
+    .privacy-note .note-box strong { color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+    footer .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.75rem; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .apps-grid { grid-template-columns: 1fr; }
+      nav ul { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="brand">Scott's Apps</span>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h1>Simple apps.<br>No nonsense.</h1>
+    <p>A small collection of focused macOS and iOS apps that do one thing well.</p>
+  </div>
+
+  <div class="section">
+    <h2>Apps</h2>
+    <div class="apps-grid">
+
+      <!-- Supreme Court Monitor -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-icon">⚖️</div>
+          <div class="app-meta">
+            <h3>Supreme Court Monitor</h3>
+            <div class="platform">macOS</div>
+          </div>
+        </div>
+        <p class="app-desc">
+          Monitors the Supreme Court website for new orders and opinions. When something new is found,
+          you get a notification, the document opens in your browser, and it's downloaded with an
+          intelligent filename — the case name for opinions, the date for orders.
+        </p>
+        <div class="app-footer">
+          <span class="badge-free">Free</span>
+          <span class="badge-pending">Awaiting App Store Approval</span>
+        </div>
+      </div>
+
+      <!-- Supreme Court Monitor Notifier -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-icon">🔔</div>
+          <div class="app-meta">
+            <h3>Supreme Court Monitor Notifier</h3>
+            <div class="platform">iOS · Companion to Supreme Court Monitor</div>
+          </div>
+        </div>
+        <p class="app-desc">
+          When Supreme Court Monitor finds a new order or opinion, a notification is pushed to your
+          iPhone. If you save documents to an iCloud folder, that folder and its contents are
+          accessible right from the app.
+        </p>
+        <div class="app-footer">
+          <span class="badge-free">Free</span>
+          <span class="badge-pending">Awaiting App Store Approval</span>
+        </div>
+      </div>
+
+      <!-- New Music Releases -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-icon">🎵</div>
+          <div class="app-meta">
+            <h3>New Music Releases</h3>
+            <div class="platform">macOS</div>
+          </div>
+        </div>
+        <p class="app-desc">
+          Checks your Apple Music library for new releases by artists you already follow.
+          Never miss an album or single from an artist in your library.
+        </p>
+        <div class="app-footer">
+          <span class="badge-paid">Paid</span>
+          <a class="app-store-btn" href="https://apps.apple.com/us/app/new-music-releases/id6758525491?mt=12" target="_blank">View on App Store</a>
+        </div>
+      </div>
+
+      <!-- Custom Refresh for Safari -->
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-icon">🔄</div>
+          <div class="app-meta">
+            <h3>Custom Refresh for Safari</h3>
+            <div class="platform">macOS · Safari Extension</div>
+          </div>
+        </div>
+        <p class="app-desc">
+          A Safari extension that lets you set a custom auto-refresh interval for any individual
+          webpage. Set it and forget it — each tab refreshes on its own schedule.
+        </p>
+        <div class="app-footer">
+          <span class="badge-paid">Paid</span>
+          <a class="app-store-btn" href="https://apps.apple.com/us/app/custom-refresh-for-safari/id6758681090?mt=12" target="_blank">View on App Store</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="privacy-note">
+    <div class="note-box">
+      <strong>🔒 Your privacy is respected.</strong> None of these apps collect, transmit, or store
+      any personal data. What's on your device stays on your device.
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div>© 2026 Scott's Apps</div>
+  </footer>
+
+</body>
+</html>
