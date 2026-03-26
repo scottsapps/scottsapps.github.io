@@ -94,7 +94,7 @@
       This privacy policy applies to all apps developed and published by Scott, including:
     </p>
     <ul>
-      <li>SCOTUSWatch (iOS)</li>
+      <li>SCOTUSWatch (iOS/iPadOS/Windows)</li>
       <li>New Music Releases (macOS)</li>
       <li>Custom Refresh for Safari (macOS)</li>
     </ul>
@@ -106,22 +106,22 @@
       third-party tracking SDKs.
     </p>
     <p>
-      SCOTUSWatch collects one piece of data: your device's APNs push notification token. This
-      is a device identifier assigned by Apple that is required to deliver push notifications.
+      SCOTUSWatch collects one piece of data: your device's APNs or WNS push notification token. This
+      is a device identifier assigned by Apple or Microsoft that is required to deliver push notifications.
       It is collected only if you grant notification permission, and only for the purpose of
       sending you Supreme Court document alerts.
     </p>
 
     <h2>SCOTUSWatch Push Notifications</h2>
     <p>
-      When you enable notifications in SCOTUSWatch, your device's APNs token is transmitted
+      When you enable notifications in SCOTUSWatch, your device's APNs or WNS token is transmitted
       to a developer-controlled server and stored there. This token is used exclusively to
       deliver push notifications when new Supreme Court documents are published. Specifically:
     </p>
     <ul>
       <li>The token is stored in a private AWS database (DynamoDB) in the US East region.</li>
       <li>It is never sold, shared with third parties, or used for any purpose other than delivering notifications.</li>
-      <li>When a new document is detected, the token is used to send a push notification via Apple's APNs servers.</li>
+      <li>When a new document is detected, the token is used to send a push notification via Apple's APNs or Microsoft's WNS servers.</li>
       <li>Stale or invalid tokens (e.g., from uninstalled apps) are automatically deleted.</li>
     </ul>
     <p>
@@ -137,7 +137,7 @@
       which the developer cannot access.
     </p>
     <p>
-      SCOTUSWatch APNs device tokens are stored on a developer-controlled AWS server solely to
+      SCOTUSWatch APNs and WNS device tokens are stored on a developer-controlled AWS server solely to
       enable push notification delivery, as described above. All other app data — including
       Apple Music library information used by New Music Releases — remains on your device and
       is never transmitted externally.
