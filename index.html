@@ -132,61 +132,87 @@
     }
     .app-store-btn:hover { background: #0070d8; text-decoration: none; }
 
-    /* SCOTUS CLUSTER — cards + bluesky bar share same width */
+    /* SCOTUS CLUSTER — 2×2 card grid */
     .scotus-cluster {
       max-width: 800px;
       margin: 0 auto;
-      padding: 2rem 2rem 1.5rem;
+      padding: 2rem 2rem 3rem;
     }
     .scotus-cluster .section-label {
       margin-bottom: 1.25rem;
     }
-
-    /* BLUESKY SECTION */
-    .bluesky-section {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 2rem 3rem;
+    .scotus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
-    .bluesky-band {
-      background: #0a1628;
-      border: 1px solid #1a3050;
-      border-radius: var(--radius);
-      padding: 1.25rem 1.75rem;
+
+    /* Circle icons */
+    .app-icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .app-icon-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .bluesky-icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #0a1e3d;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
+      justify-content: center;
     }
-    .bluesky-logo {
-      width: 36px;
-      height: 36px;
-      flex-shrink: 0;
+    .bluesky-icon-circle svg {
+      width: 32px;
+      height: 32px;
     }
-    .bluesky-body { flex: 1; min-width: 200px; }
-    .bluesky-body strong {
-      display: block;
-      font-size: 0.97rem;
+
+    /* MS Store button */
+    .ms-store-btn {
+      display: inline-block;
+      background: #0078D4;
+      color: #fff;
+      font-size: 0.82rem;
       font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.2rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      transition: background 0.2s;
     }
-    .bluesky-body p {
-      font-size: 0.88rem;
-      color: #8ab4d8;
-      margin: 0;
+    .ms-store-btn:hover { background: #006CBE; text-decoration: none; }
+
+    /* Android GitHub button */
+    .android-btn {
+      display: inline-block;
+      background: #238636;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      transition: background 0.2s;
     }
+    .android-btn:hover { background: #1c6e2a; text-decoration: none; }
+
+    /* Bluesky follow button */
     .bluesky-btn {
       display: inline-block;
       background: #0085ff;
       color: #fff;
       font-size: 0.82rem;
       font-weight: 600;
-      padding: 0.4rem 1rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 20px;
       white-space: nowrap;
       transition: background 0.2s;
-      flex-shrink: 0;
     }
     .bluesky-btn:hover { background: #006fd6; text-decoration: none; }
 
@@ -270,9 +296,9 @@
     @media (max-width: 600px) {
       .hero h1 { font-size: 2rem; }
       .secondary-grid { grid-template-columns: 1fr; }
+      .scotus-grid { grid-template-columns: 1fr; }
       nav ul { gap: 1rem; }
       .featured-card { padding: 1.5rem; }
-      .bluesky-band { gap: 1rem; }
     }
   </style>
 </head>
@@ -291,14 +317,15 @@
     <p>Push notifications the moment SCOTUS publishes opinions, orders, or other documents — with optional AI summaries.</p>
   </div>
 
-  <!-- SCOTUSWatch iOS + Windows side-by-side -->
+  <!-- SCOTUSWatch 2×2 grid -->
   <div class="scotus-cluster">
-    <div class="secondary-grid">
-      <!-- SCOTUSWatch iOS -->
+    <div class="scotus-grid">
+
+      <!-- iOS (top-left) -->
       <div class="app-card" style="border-color: #333; padding: 1.5rem 1.6rem;">
         <div class="app-card-header">
-          <div class="app-icon" style="width:56px;height:56px;">
-            <img src="icon-scotuswatch.png" alt="SCOTUSWatch icon" width="56" height="56" style="border-radius:12px;" />
+          <div class="app-icon-circle">
+            <img src="icon-scotuswatch.png" alt="SCOTUSWatch icon" />
           </div>
           <div class="app-meta">
             <h3 style="font-size:1.05rem;">SCOTUSWatch</h3>
@@ -315,11 +342,12 @@
           <span class="badge-pending">Coming Soon</span>
         </div>
       </div>
-      <!-- SCOTUSWatch Windows -->
+
+      <!-- Windows (top-right) -->
       <div class="app-card" style="border-color: #333; padding: 1.5rem 1.6rem;">
         <div class="app-card-header">
-          <div class="app-icon" style="width:56px;height:56px;">
-            <img src="icon-scotuswatch.png" alt="SCOTUSWatch Windows icon" width="56" height="56" style="border-radius:12px;" />
+          <div class="app-icon-circle">
+            <img src="icon-scotuswatch.png" alt="SCOTUSWatch Windows icon" />
           </div>
           <div class="app-meta">
             <h3 style="font-size:1.05rem;">SCOTUSWatch for Windows</h3>
@@ -332,24 +360,54 @@
         </p>
         <div class="app-footer">
           <span class="badge-free">Free</span>
-          <a class="app-store-btn" href="https://apps.microsoft.com/detail/9n2nmt00tqbw?hl=en-us&gl=US&ocid=pdpshare" target="_blank">View on Microsoft Store</a>
+          <a class="ms-store-btn" href="https://apps.microsoft.com/detail/9n2nmt00tqbw?hl=en-us&gl=US&ocid=pdpshare" target="_blank">View on Microsoft Store</a>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Bluesky Feed -->
-  <div class="bluesky-section">
-    <div class="bluesky-band">
-      <!-- Bluesky butterfly SVG -->
-      <svg class="bluesky-logo" viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Bluesky">
-        <path d="M180 141.964C163.699 110.262 119.326 49.825 78.857 28.814C50.738 14.419 0 6.980 0 59.371c0 10.783 6.114 90.716 9.696 103.659 12.496 44.695 57.978 56.149 98.179 49.227-76.894 13.118-96.500 56.990-54.241 100.862 79.893 81.955 114.821-20.565 123.366-47.134 8.545 26.569 43.473 129.089 123.366 47.134 42.259-43.872 22.653-87.744-54.241-100.862 40.201 6.922 85.683-4.532 98.179-49.227C351.886 150.087 358 70.154 358 59.371 358 6.980 307.262 14.419 279.143 28.814 238.674 49.825 196.301 110.262 180 141.964z" fill="#0085ff"/>
-      </svg>
-      <div class="bluesky-body">
-        <strong>@scotuswatch.bsky.social</strong>
-        <p>Follow on Bluesky for real-time posts when new Supreme Court documents are published, with AI summaries.</p>
+      <!-- Bluesky (bottom-left) -->
+      <div class="app-card" style="border-color: #1a3050; padding: 1.5rem 1.6rem;">
+        <div class="app-card-header">
+          <div class="bluesky-icon-circle">
+            <svg viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Bluesky">
+              <path d="M180 141.964C163.699 110.262 119.326 49.825 78.857 28.814C50.738 14.419 0 6.980 0 59.371c0 10.783 6.114 90.716 9.696 103.659 12.496 44.695 57.978 56.149 98.179 49.227-76.894 13.118-96.500 56.990-54.241 100.862 79.893 81.955 114.821-20.565 123.366-47.134 8.545 26.569 43.473 129.089 123.366 47.134 42.259-43.872 22.653-87.744-54.241-100.862 40.201 6.922 85.683-4.532 98.179-49.227C351.886 150.087 358 70.154 358 59.371 358 6.980 307.262 14.419 279.143 28.814 238.674 49.825 196.301 110.262 180 141.964z" fill="#0085ff"/>
+            </svg>
+          </div>
+          <div class="app-meta">
+            <h3 style="font-size:1.05rem;">SCOTUSWatch on Bluesky</h3>
+            <div class="platform">@scotuswatch.bsky.social</div>
+          </div>
+        </div>
+        <p class="app-desc" style="color:#ccc;">
+          Follow for real-time posts the moment new Supreme Court documents are published,
+          including AI-generated summaries posted as reply threads.
+        </p>
+        <div class="app-footer">
+          <span class="badge-free">Free</span>
+          <a class="bluesky-btn" href="https://bsky.app/profile/scotuswatch.bsky.social" target="_blank">Follow on Bluesky</a>
+        </div>
       </div>
-      <a class="bluesky-btn" href="https://bsky.app/profile/scotuswatch.bsky.social" target="_blank">Follow on Bluesky</a>
+
+      <!-- Android (bottom-right) -->
+      <div class="app-card" style="border-color: #333; padding: 1.5rem 1.6rem;">
+        <div class="app-card-header">
+          <div class="app-icon-circle">
+            <img src="icon-scotuswatch.png" alt="SCOTUSWatch Android icon" />
+          </div>
+          <div class="app-meta">
+            <h3 style="font-size:1.05rem;">SCOTUSWatch for Android</h3>
+            <div class="platform">Android</div>
+          </div>
+        </div>
+        <p class="app-desc" style="color:#ccc;">
+          Instant push notifications when the Supreme Court publishes new opinions or orders.
+          Tap a notification to open the document directly.
+        </p>
+        <div class="app-footer">
+          <span class="badge-free">Free</span>
+          <a class="android-btn" href="https://github.com/scottsapps/SCOTUSWatch_Android/releases/latest" target="_blank">Download APK</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
